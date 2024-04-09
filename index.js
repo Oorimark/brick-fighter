@@ -2,9 +2,10 @@ import express from "express";
 import path from "path";
 import cors from "cors";
 
-app.use(cors);
 const app = express();
 const port = 3000;
+
+app.use(cors);
 
 app.use(express.static(path.join(__dirname, "public")));
 
