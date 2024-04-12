@@ -35,7 +35,7 @@ let bottomPadding = 55;
 
 let canvasBackgroundColor = [38, 68, 57];
 let respawnPlayer = false;
-let startGame = false;
+let startGame = JSON.parse(localStorage.getItem("dontShowStartPage"));
 let changeBackground = false;
 let showPlayers = [true, true];
 let enemys = [];

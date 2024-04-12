@@ -18,13 +18,12 @@
       display: none;
       justify-content: center;
       align-items: center;
-      height: 80vh;
+      height: 100vh;
     }
   </style>
   <body>
     <div class="min-window-width-error" id="minWindowWidthError">
-      Sorry the game can't be played on this device width, switch to a larger
-      screen
+      Sorry the game can't be played on mobile, switch to a desktop screen
     </div>
   </body>
   <script src="./js/variables.js"></script>
@@ -40,6 +39,10 @@
 
     if (window.innerWidth <= MIN_WINDOW_WIDTH) {
       document.querySelector("#minWindowWidthError").style.display = "flex";
+      setTimeout(() => {
+        const canvas = document.querySelector("#defaultCanvas0");
+        canvas.style.display = "none";
+      }, 2000);
     }
   </script>
 </html>
