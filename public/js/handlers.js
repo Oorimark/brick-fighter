@@ -1,15 +1,13 @@
+function createPlayer(keyType) {
+  player1 = new Player(width / 2, height, keyType, 1);
+}
+
 function playerActionHandler() {
-  if (respawnPlayer) showPlayers[0] = true;
-  if (showPlayers[0]) {
-    respawnPlayer = false;
-    player1.display();
-    player1.shoot();
-    player1.directional();
-    player1.checkIncomingBullet();
-    player1.checkIncomingGifts();
-  } else {
-    playerLoseAudio.play();
-  }
+  player1.display();
+  player1.shoot();
+  player1.directional();
+  player1.checkIncomingBullet();
+  player1.checkIncomingGifts();
 }
 
 function enemyActionHandler() {
@@ -34,11 +32,6 @@ function bulletsDisplayHandler() {
       bullet.move();
     });
   }
-}
-
-function bulletsCleaner() {
-  enemyBullets = enemyBullets.filter((bullet) => bullet.y < height);
-  playerBullets = playerBullets.filter((bullet) => bullet.y > 0);
 }
 
 function createEnemyHandler() {
@@ -100,7 +93,8 @@ function displayGiftScore(score) {
   let p = createP("+" + score + "%");
 
   p.position(width_ / 2, height_ / 2);
-  p.style("color", "white", "font-size", 540);
+  p.style("color", "white");
+  p.style("font-size", 540);
 
   setTimeout(() => {
     p.remove();
@@ -193,13 +187,15 @@ function displayStartUI() {
 
 function gameOverUI() {
   const p = createP("Hey, You Lose!");
+  const score = createP("Your Level is: " + level);
+
   const continueBtn = createButton("Continue");
   continueBtn.mousePressed(function () {
-    respawnPlayer = true;
+    createPlayer("arrowKeys");
     dialogContainer.remove();
   });
 
-  return [p, continueBtn];
+  return [p, score, continueBtn];
 }
 
 function displayGameOver() {

@@ -1,13 +1,13 @@
 class GiftItems {
   constructor(itemType, value, speed, giftImg) {
-    this.x = random(width_);
+    this.x = random(width);
     this.y = 20;
     this.itemType = itemType;
     this.value = value;
     this.speed = speed;
     this.giftImg = giftImg;
-    this.width = 74.14 - 20; // 20 - padding, 74.14 - original width
-    this.height = 20 + 71.17; // 20 - padding, 71.17 - original height
+    this.width = 74.14 - 20; // 20 - padding, 74.14 - image original width
+    this.height = 20 + 71.17; // 20 - "" , 71.17 - ""
   }
 
   move() {
@@ -24,7 +24,7 @@ class HealthGift extends GiftItems {
   value = random([20, 50, 70, 100]);
   speed = 3;
   constructor() {
-    super("health", HealthGift.value, HealthGift.speed, healthGiftImg);
+    super("health", this.value, this.speed, healthGiftImg);
   }
   t;
 }

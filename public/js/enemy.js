@@ -1,19 +1,19 @@
 class Enemy extends Box {
-  speed = 20;
   health = 100;
-  healthDecayRate = 10;
   playerType = "Enemy";
+  healthDecayRate = 10;
 
   x = random(width);
-  y = random(height * 0.2, height * 0.4); // keeps the height at 20% - 40%
+  y = random(height * 0.2, height * 0.4); // keeps the height between 20% - 40% of window height
 
   constructor(_id) {
-    super(Enemy.x, Enemy.y, Enemy.speed, enemyCharacterDown);
+    super(Enemy.x, Enemy.y, enemyCharacterDown);
     this._id = _id;
-    this.bulletSpeed = 20;
-    this.moveByStepFlag = true;
-    this.moveStepDelay = 2000; // milliseconds
+    this.speed = 20;
     this.stepCounter = 0;
+    this.bulletSpeed = 20;
+    this.moveStepFlag = true;
+    this.moveStepDelay = 2000; // milliseconds
     this.directions = ["LEFT", "RIGHT", "UP", "DOWN"];
   }
 
@@ -40,16 +40,16 @@ class Enemy extends Box {
     this.y = constrain(this.y, 0, height - this.size);
 
     setTimeout(() => {
-      this.moveByStepFlag = true;
+      this.moveStepFlag = true;
     }, this.moveStepDelay);
   }
 
   move() {
     const direction = random(this.directions);
 
-    if (this.moveByStepFlag) {
-      this.moveByStepFlag = false;
-      startGame && this.shoot(direction);
+    if (this.moveStepFlag) {
+      this.moveStepFlag = false;
+      startGame && this.shoot(direction); // only shoot if the game has started
       this.direction(direction);
     }
   }
@@ -72,8 +72,8 @@ class Enemy extends Box {
         this.health -= this.healthDecayRate;
         canvasBackgroundColor = [43, 137, 103];
         if (this.health <= 0) {
-          killEnemyAudio.play();
           this.remove();
+          killEnemyAudio.play();
         } else {
           killEnemyAudio.stop();
         }

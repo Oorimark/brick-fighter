@@ -1,12 +1,31 @@
 class Player extends Box {
-  speed = 20;
   health = 10;
   healthDecayRate = 10;
 
+  arrowKeys = {
+    LEFT: LEFT_ARROW,
+    RIGHT: RIGHT_ARROW,
+    UP: UP_ARROW,
+    DOWN: DOWN_ARROW,
+    SHOOT: SPACE_BAR,
+  };
+
+  keypadKeys = {
+    numPadKeys: {
+      LEFT: 100, // #4
+      RIGHT: 102, // #6
+      UP: 104, // #2
+      DOWN: 98, // #8
+      SHOOT: 101, // #5
+    },
+  };
+
   constructor(x, y, selectedKey, playerNumber) {
-    super(x, y, Player.speed, playerCharacterUp);
+    super(x, y - screenBottomPadding, playerCharacterUp);
+    this.speed = 10;
     this.bulletSpped = 20;
-    this.playerKey = playerKeys[selectedKey];
+    this.playerKey =
+      selectedKey === "arrowKeys" ? this.arrowKeys : this.keypadKeys;
     this.playerNumber = playerNumber;
     this.receivedHealthGift = 0;
     this.direction = "UP";
@@ -71,10 +90,10 @@ class Player extends Box {
       if (d <= this.size / 2) {
         canvasBackgroundColor = [130, 29, 29];
         this.health -= this.healthDecayRate;
+        enemyBullets.splice(idx, 1);
         if (this.health <= 0) {
-          this.remove();
           displayGameOver();
-          enemyBullets.splice(idx, 1);
+          playerLoseAudio.play();
           parseInt(highestLevel) < level &&
             localStorage.setItem("highestLevel", level);
         }
@@ -93,10 +112,6 @@ class Player extends Box {
         giftItems.splice(idx, 1);
       }
     });
-  }
-
-  remove() {
-    showPlayers[this.playerNumber - 1] = false;
   }
 
   displayHealth() {

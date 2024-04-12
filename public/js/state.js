@@ -1,8 +1,7 @@
 class Box {
-  constructor(x, y, speed, characterImg) {
+  constructor(x, y, characterImg) {
     this.x = x;
-    this.y = y - bottomPadding;
-    this.speed = speed;
+    this.y = y;
     this.size = 39;
     this.color = color;
     this.characterImg = characterImg;
