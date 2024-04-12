@@ -26,9 +26,6 @@ function preload() {
 }
 
 function setup() {
-  width_ = windowWidth;
-  height_ = windowHeight;
-
   const arrowKeys = {
     LEFT: LEFT_ARROW,
     RIGHT: RIGHT_ARROW,
@@ -45,10 +42,12 @@ function setup() {
   playerKeys.arrowKeys = arrowKeys; // register arrow keys to player keys
   player1 = new Player(width / 2, height, "arrowKeys", 1);
   createEnemyHandler();
+
+  displayStartUI();
 }
 
 function draw() {
-  // frameRate(60);
+  frameRate(60);
 
   const [r, g, b] = canvasBackgroundColor;
 

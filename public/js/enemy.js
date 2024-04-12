@@ -49,7 +49,7 @@ class Enemy extends Box {
 
     if (this.moveByStepFlag) {
       this.moveByStepFlag = false;
-      this.shoot(direction);
+      startGame && this.shoot(direction);
       this.direction(direction);
     }
   }

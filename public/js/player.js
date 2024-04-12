@@ -1,6 +1,6 @@
 class Player extends Box {
   speed = 20;
-  health = 100;
+  health = 10;
   healthDecayRate = 10;
 
   constructor(x, y, selectedKey, playerNumber) {
@@ -73,6 +73,7 @@ class Player extends Box {
         this.health -= this.healthDecayRate;
         if (this.health <= 0) {
           this.remove();
+          displayGameOver();
           enemyBullets.splice(idx, 1);
           parseInt(highestLevel) < level &&
             localStorage.setItem("highestLevel", level);

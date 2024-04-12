@@ -14,15 +14,32 @@
       overflow-x: hidden;
       overflow-y: hidden;
     }
+    .min-window-width-error {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
   </style>
   <body>
-    <script src="./js/variables.js"></script>
-    <script src="./js/state.js"></script>
-    <script src="./js/bullet.js"></script>
-    <script src="./js/player.js"></script>
-    <script src="./js/enemy.js"></script>
-    <script src="./js/gifts.js"></script>
-    <script src="./js/handlers.js"></script>
-    <script src="./js/sketch.js"></script>
+    <div class="min-window-width-error" id="minWindowWidthError">
+      Sorry the game can't be played on this device width, switch to a larger
+      screen
+    </div>
   </body>
+  <script src="./js/variables.js"></script>
+  <script src="./js/state.js"></script>
+  <script src="./js/bullet.js"></script>
+  <script src="./js/player.js"></script>
+  <script src="./js/enemy.js"></script>
+  <script src="./js/gifts.js"></script>
+  <script src="./js/handlers.js"></script>
+  <script src="./js/sketch.js"></script>
+  <script>
+    const MIN_WINDOW_WIDTH = 700;
+
+    if (window.innerWidth <= MIN_WINDOW_WIDTH) {
+      document.querySelector("#minWindowWidthError").style.display = "flex";
+    }
+  </script>
 </html>

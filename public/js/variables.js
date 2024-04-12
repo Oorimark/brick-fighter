@@ -5,7 +5,9 @@ let player1;
 let player2;
 let createUICanvas;
 let createTempCanvas;
+
 let gameBackgroundAudio;
+let dialogContainer;
 
 let healthGiftImg;
 
@@ -32,6 +34,8 @@ let enemyNumber = 2;
 let bottomPadding = 55;
 
 let canvasBackgroundColor = [38, 68, 57];
+let respawnPlayer = false;
+let startGame = false;
 let changeBackground = false;
 let showPlayers = [true, true];
 let enemys = [];
