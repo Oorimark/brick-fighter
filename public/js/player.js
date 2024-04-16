@@ -2,7 +2,7 @@ class Player extends Box {
   health = 10;
   healthDecayRate = 10;
 
-  arrowKeys = {
+  arrowControlKeys = {
     LEFT: LEFT_ARROW,
     RIGHT: RIGHT_ARROW,
     UP: UP_ARROW,
@@ -10,7 +10,7 @@ class Player extends Box {
     SHOOT: SPACE_BAR,
   };
 
-  keypadKeys = {
+  keypadControlKeys = {
     numPadKeys: {
       LEFT: 100, // #4
       RIGHT: 102, // #6
@@ -24,11 +24,13 @@ class Player extends Box {
     super(x, y - screenBottomPadding, playerCharacterUp);
     this.speed = 10;
     this.bulletSpped = 20;
-    this.playerKey =
-      selectedKey === "arrowKeys" ? this.arrowKeys : this.keypadKeys;
     this.playerNumber = playerNumber;
     this.receivedHealthGift = 0;
     this.direction = "UP";
+    this.playerKey =
+      selectedKey === "arrowKeys"
+        ? this.arrowControlKeys
+        : this.keypadControlKeys;
   }
 
   _boundaryConstrainer() {
