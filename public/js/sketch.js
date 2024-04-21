@@ -8,8 +8,8 @@ function preload() {
   playerLoseAudio = createAudio(
     "./assets/sounds/mixkit-player-losing-or-failing-2042.wav",
   );
-
   bulletShootAudio = createAudio("./assets/sounds/blaster-2-81267.mp3");
+
   enemyCharacterUp = loadImage("./assets/characters/enemy_up.png");
   enemyCharacterLeft = loadImage("./assets/characters/enemy_left.png");
   enemyCharacterDown = loadImage("./assets/characters/enemy_down.png");
@@ -29,7 +29,6 @@ function setup() {
 
   createPlayer("arrowKeys");
   createEnemyHandler();
-
   displayStartUI();
 }
 

@@ -103,18 +103,7 @@ function displayGiftScore(score) {
 
 function dialogBox(children) {
   dialogContainer = createDiv();
-
-  dialogContainer.style("position", "fixed");
-  dialogContainer.style("background", "#ffffff90");
-  dialogContainer.style("backdrop-filter", "blur(1rem)");
-  dialogContainer.style("width", "100%");
-  dialogContainer.style("z-index", "99");
-  dialogContainer.style("top", "0");
-  dialogContainer.style("display", "flex");
-  dialogContainer.style("flex-direction", "column");
-  dialogContainer.style("justify-content", "center");
-  dialogContainer.style("align-items", "center");
-  dialogContainer.style("height", "100vh");
+  dialogContainer.class("dialog-container");
 
   children.forEach((child) => {
     dialogContainer.child(child);
@@ -123,15 +112,12 @@ function dialogBox(children) {
 
 function startScreenUI() {
   const headerContainer = createDiv();
+  headerContainer.style("margin-block", "2rem");
 
   const header = createP("Brick Fighter");
+  header.class("start-screen-header");
+
   const headerParagraph = createP("Use the instruction below to play the game");
-
-  header.style("text-align", "center");
-  header.style("font-size", "2rem");
-  header.style("font-weight", "bold");
-
-  headerContainer.style("margin-block", "2rem");
 
   headerContainer.child(header);
   headerContainer.child(headerParagraph);
@@ -141,7 +127,7 @@ function startScreenUI() {
   const instruct3 = createP("Use the Up Arrow to move ↑");
   const instruct4 = createP("Use the Left Arrow to move ←");
   const instruct5 = createP("Use the Space Bar to shoot");
-  const extra = createP("You can try it!");
+  const extra = createP("-- You can try it! --");
 
   const proceedBtn = createButton("Start Game");
   proceedBtn.mousePressed(function () {
@@ -150,6 +136,7 @@ function startScreenUI() {
   });
 
   const showAgainContainer = createDiv();
+  showAgainContainer.class("show-again-container");
 
   const showAgainText = createP("Don't show Again");
   const showAgainCheckBox = createCheckbox();
@@ -159,10 +146,6 @@ function startScreenUI() {
       ? localStorage.setItem("dontShowStartPage", JSON.stringify(true))
       : localStorage.setItem("dontShowStartPage", JSON.stringify(false));
   });
-
-  showAgainContainer.style("display", "flex");
-  showAgainContainer.style("justify-content", "center");
-  showAgainContainer.style("align-items", "center");
 
   showAgainContainer.child(showAgainCheckBox);
   showAgainContainer.child(showAgainText);
@@ -181,7 +164,7 @@ function startScreenUI() {
 }
 
 function displayStartUI() {
-  if (!JSON.parse(localStorage.getItem("dontShowStartPage")))
+  if (!JSON.parse(localStorage.getItem("dontShowStartPage")) && !minWidthError)
     dialogBox(startScreenUI());
 }
 
