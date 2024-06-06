@@ -1,5 +1,5 @@
 class Player extends Box {
-  health = 10;
+  health = 100;
   healthDecayRate = 10;
 
   arrowControlKeys = {
