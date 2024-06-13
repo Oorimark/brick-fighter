@@ -26,5 +26,4 @@ class HealthGift extends GiftItems {
   constructor() {
     super("health", this.value, this.speed, healthGiftImg);
   }
-  t;
 }
